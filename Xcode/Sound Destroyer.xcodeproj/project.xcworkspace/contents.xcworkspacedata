@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:AIFF.xcodeproj">
+      location = "self:/Users/juliandunskus/GitHub/SoundDestroyer/Sound Destroyer.xcodeproj">
    </FileRef>
 </Workspace>

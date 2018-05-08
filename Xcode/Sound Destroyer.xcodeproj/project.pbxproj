@@ -23,14 +23,14 @@
 		95341E3C209BBC4A00BBB1AC /* Raw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Raw.swift; sourceTree = "<group>"; };
 		9576DE12209E1783006E0596 /* AIFFEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIFFEncoder.swift; sourceTree = "<group>"; };
 		959D94D9209F272E0006E01B /* Transform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
-		95EFE636209B1B2F00A4C367 /* AIFF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AIFF.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		95EFE636209B1B2F00A4C367 /* AIFF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = AIFF.app; path = "Sound Destroyer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		95EFE639209B1B2F00A4C367 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95EFE63B209B1B2F00A4C367 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		95EFE63D209B1B2F00A4C367 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		95EFE63F209B1B3100A4C367 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		95EFE642209B1B3100A4C367 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		95EFE644209B1B3100A4C367 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		95EFE645209B1B3100A4C367 /* AIFF.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AIFF.entitlements; sourceTree = "<group>"; };
+		95EFE645209B1B3100A4C367 /* Sound Destroyer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Sound Destroyer.entitlements"; sourceTree = "<group>"; };
 		95EFE64B209B1B7C00A4C367 /* Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Format.swift; sourceTree = "<group>"; };
 		95EFE64D209B397100A4C367 /* AIFFDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIFFDecoder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -46,10 +46,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		95C4801020A1921400BE888F /* Back End */ = {
+			isa = PBXGroup;
+			children = (
+				95EFE64D209B397100A4C367 /* AIFFDecoder.swift */,
+				9576DE12209E1783006E0596 /* AIFFEncoder.swift */,
+				95341E3C209BBC4A00BBB1AC /* Raw.swift */,
+				95EFE64B209B1B7C00A4C367 /* Format.swift */,
+				959D94D9209F272E0006E01B /* Transform.swift */,
+			);
+			path = "Back End";
+			sourceTree = "<group>";
+		};
 		95EFE62D209B1B2F00A4C367 = {
 			isa = PBXGroup;
 			children = (
-				95EFE638209B1B2F00A4C367 /* AIFF */,
+				95EFE644209B1B3100A4C367 /* Info.plist */,
+				95EFE645209B1B3100A4C367 /* Sound Destroyer.entitlements */,
+				95C4801020A1921400BE888F /* Back End */,
+				95EFE638209B1B2F00A4C367 /* Front End */,
 				95EFE637209B1B2F00A4C367 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,31 +77,24 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		95EFE638209B1B2F00A4C367 /* AIFF */ = {
+		95EFE638209B1B2F00A4C367 /* Front End */ = {
 			isa = PBXGroup;
 			children = (
-				959D94D9209F272E0006E01B /* Transform.swift */,
 				95EFE639209B1B2F00A4C367 /* AppDelegate.swift */,
-				95EFE63B209B1B2F00A4C367 /* ViewController.swift */,
 				95EFE63D209B1B2F00A4C367 /* Document.swift */,
-				95EFE64D209B397100A4C367 /* AIFFDecoder.swift */,
-				9576DE12209E1783006E0596 /* AIFFEncoder.swift */,
-				95341E3C209BBC4A00BBB1AC /* Raw.swift */,
-				95EFE64B209B1B7C00A4C367 /* Format.swift */,
+				95EFE63B209B1B2F00A4C367 /* ViewController.swift */,
 				95EFE63F209B1B3100A4C367 /* Assets.xcassets */,
 				95EFE641209B1B3100A4C367 /* Main.storyboard */,
-				95EFE644209B1B3100A4C367 /* Info.plist */,
-				95EFE645209B1B3100A4C367 /* AIFF.entitlements */,
 			);
-			path = AIFF;
+			path = "Front End";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		95EFE635209B1B2F00A4C367 /* AIFF */ = {
+		95EFE635209B1B2F00A4C367 /* Sound Destroyer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 95EFE648209B1B3100A4C367 /* Build configuration list for PBXNativeTarget "AIFF" */;
+			buildConfigurationList = 95EFE648209B1B3100A4C367 /* Build configuration list for PBXNativeTarget "Sound Destroyer" */;
 			buildPhases = (
 				95EFE632209B1B2F00A4C367 /* Sources */,
 				95EFE633209B1B2F00A4C367 /* Frameworks */,
@@ -96,7 +104,7 @@
 			);
 			dependencies = (
 			);
-			name = AIFF;
+			name = "Sound Destroyer";
 			productName = AIFF;
 			productReference = 95EFE636209B1B2F00A4C367 /* AIFF.app */;
 			productType = "com.apple.product-type.application";
@@ -116,7 +124,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 95EFE631209B1B2F00A4C367 /* Build configuration list for PBXProject "AIFF" */;
+			buildConfigurationList = 95EFE631209B1B2F00A4C367 /* Build configuration list for PBXProject "Sound Destroyer" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -129,7 +137,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				95EFE635209B1B2F00A4C367 /* AIFF */,
+				95EFE635209B1B2F00A4C367 /* Sound Destroyer */,
 			);
 		};
 /* End PBXProject section */
@@ -293,16 +301,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = AIFF/AIFF.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Sound Destroyer.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = V2EPDFA9PV;
-				INFOPLIST_FILE = AIFF/Info.plist;
+				INFOPLIST_FILE = Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.juliand665.AIFF;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.juliand665.Sound-Destroyer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 			};
@@ -312,16 +320,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = AIFF/AIFF.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Sound Destroyer.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = V2EPDFA9PV;
-				INFOPLIST_FILE = AIFF/Info.plist;
+				INFOPLIST_FILE = Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.juliand665.AIFF;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.juliand665.Sound-Destroyer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 			};
@@ -330,7 +338,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		95EFE631209B1B2F00A4C367 /* Build configuration list for PBXProject "AIFF" */ = {
+		95EFE631209B1B2F00A4C367 /* Build configuration list for PBXProject "Sound Destroyer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				95EFE646209B1B3100A4C367 /* Debug */,
@@ -339,7 +347,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		95EFE648209B1B3100A4C367 /* Build configuration list for PBXNativeTarget "AIFF" */ = {
+		95EFE648209B1B3100A4C367 /* Build configuration list for PBXNativeTarget "Sound Destroyer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				95EFE649209B1B3100A4C367 /* Debug */,
