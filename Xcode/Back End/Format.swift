@@ -103,6 +103,8 @@ struct SoundData: Chunk {
 	}
 }
 
+typealias SampleFrames = [SampleFrame]
+
 struct SampleFrame {
 	/// the sample at this time for each channel
 	var samples: [Sample]

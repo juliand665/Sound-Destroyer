@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		951135DC20A1F9AF00629525 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951135DB20A1F9AF00629525 /* Helpers.swift */; };
+		951135DE20A31CC200629525 /* MainTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951135DD20A31CC200629525 /* MainTransform.swift */; };
 		95341E3D209BBC4A00BBB1AC /* Raw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95341E3C209BBC4A00BBB1AC /* Raw.swift */; };
 		9576DE13209E1783006E0596 /* AIFFEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9576DE12209E1783006E0596 /* AIFFEncoder.swift */; };
 		959D94DA209F272E0006E01B /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959D94D9209F272E0006E01B /* Transform.swift */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		951135DB20A1F9AF00629525 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		951135DD20A31CC200629525 /* MainTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTransform.swift; sourceTree = "<group>"; };
 		95341E3C209BBC4A00BBB1AC /* Raw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Raw.swift; sourceTree = "<group>"; };
 		9576DE12209E1783006E0596 /* AIFFEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIFFEncoder.swift; sourceTree = "<group>"; };
 		959D94D9209F272E0006E01B /* Transform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
@@ -53,7 +57,9 @@
 				9576DE12209E1783006E0596 /* AIFFEncoder.swift */,
 				95341E3C209BBC4A00BBB1AC /* Raw.swift */,
 				95EFE64B209B1B7C00A4C367 /* Format.swift */,
+				951135DD20A31CC200629525 /* MainTransform.swift */,
 				959D94D9209F272E0006E01B /* Transform.swift */,
+				951135DB20A1F9AF00629525 /* Helpers.swift */,
 			);
 			path = "Back End";
 			sourceTree = "<group>";
@@ -162,7 +168,9 @@
 				95EFE64C209B1B7C00A4C367 /* Format.swift in Sources */,
 				95EFE63C209B1B2F00A4C367 /* ViewController.swift in Sources */,
 				9576DE13209E1783006E0596 /* AIFFEncoder.swift in Sources */,
+				951135DE20A31CC200629525 /* MainTransform.swift in Sources */,
 				95341E3D209BBC4A00BBB1AC /* Raw.swift in Sources */,
+				951135DC20A1F9AF00629525 /* Helpers.swift in Sources */,
 				95EFE63A209B1B2F00A4C367 /* AppDelegate.swift in Sources */,
 				95EFE64E209B397100A4C367 /* AIFFDecoder.swift in Sources */,
 				959D94DA209F272E0006E01B /* Transform.swift in Sources */,

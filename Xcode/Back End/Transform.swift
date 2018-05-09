@@ -2,54 +2,22 @@
 
 import Foundation
 
+/// `Transform`s should not persist data across runs, but who am I to tell you what you can and can't do?
 protocol Transform {
-	// TODO find a solution for slowdown being really long and speedup really short
-	
-	init(using common: Common)
-	
-	func transform(_ frames: [SampleFrame]) -> [SampleFrame]
+	/**
+	Applies the transformation to the data in `main`.
+	- precondition: `main` must have at least `maximumLength` sample frames available to read.
+	- parameter main: provides a unified I/O point for the sound data, along with some metadata in `common`
+	- parameter maximumLength: the maximum amount of frames that should be input or output by the transform
+	*/
+	func transform(modifying main: inout MainTransform, maximumLength: Int)
 }
 
-struct MainTransform: Transform {
-	let transforms: [Transform]
-	
-	let common: Common
-	let lengthRange: (Int, Int)
-	
-	init(using common: Common) {
-		self.common = common
-		transforms = [
-			AmplitudeRounding(using: common),
-			TimeRounding(using: common),
-			SlowDown(using: common),
-			SpeedUp(using: common),
-		]
-		lengthRange = (Int(0.5 * common.sampleRate),
-					   Int(2.0 * common.sampleRate))
-	}
-	
-	func transform(_ frames: [SampleFrame]) -> [SampleFrame] {
-		var transformed: [SampleFrame] = []
-		var position = frames.startIndex
-		while position < frames.endIndex {
-			let length = min(Int.randomValue(in: lengthRange), frames.endIndex - position)
-			let transform = transforms[.randomValue(lessThan: transforms.count)]
-			let toTransform = frames[position..<position + length]
-			transformed += transform.transform(Array(toTransform)) // TODO maybe avoid copying
-			position += length
-		}
-		return transformed
-	}
-}
-
+/// Individually rounds the amplitude of each channel in each frame, with a random overall strength.
 struct AmplitudeRounding: Transform {
-	let strengthRange = (128, 1024)
-	
-	init(using common: Common) {}
-	
-	func transform(_ frames: [SampleFrame]) -> [SampleFrame] {
-		let strength = Float(.randomValue(in: strengthRange))
-		return frames.map { frame in
+	func transform(modifying main: inout MainTransform, maximumLength: Int) {
+		let strength = Float.randomValue(in: (128, 1024))
+		main += main.read(maximumLength).map { frame in
 			frame.map {
 				Sample(round(Float($0) / strength) * strength)
 			}
@@ -58,46 +26,36 @@ struct AmplitudeRounding: Transform {
 }
 
 // basically SpeedUp • SlowDown
+/// Repeats every `n`th frame multiple times, overriding subsequent frames.
 struct TimeRounding: Transform {
-	let lengthRange: (Int, Int)
-	
-	init(using common: Common) {
-		lengthRange = (Int(0.0001 * common.sampleRate),
-					   Int(0.001  * common.sampleRate))
-	}
-	
-	func transform(_ frames: [SampleFrame]) -> [SampleFrame] {
-		let length = Int.randomValue(in: lengthRange)
-		return frames
-			.lazy
-			.enumerated()
-			.filter { $0.offset % length == 0 }
-			.flatMap { repeatElement($0.element, count: length) }
+	func transform(modifying main: inout MainTransform, maximumLength: Int) {
+		let factorRange = (Int(0.0001 * main.common.sampleRate),
+						   Int(0.0010 * main.common.sampleRate))
+		let factor = Int.randomValue(in: factorRange)
+		for _ in 1...maximumLength / factor {
+			main += repeatElement(main.read(), count: factor)
+			main.skip(factor - 1)
+		}
 	}
 }
 
+/// Repeats every frame multiple times, so as to slow down the overall sound.
 struct SlowDown: Transform {
-	let factorRange = (2, 8)
-	
-	init(using common: Common) {}
-	
-	func transform(_ frames: [SampleFrame]) -> [SampleFrame] {
-		let factor = Int.randomValue(in: factorRange)
-		return frames.flatMap { repeatElement($0, count: factor) }
+	func transform(modifying main: inout MainTransform, maximumLength: Int) {
+		let factor = Int.randomValue(in: (2, 8))
+		for _ in 1...maximumLength / factor {
+			main += repeatElement(main.read(), count: factor)
+		}
 	}
 }
 
+/// Skips frames in regular intervals, so as to speed up the overall sound.
 struct SpeedUp: Transform {
-	let factorRange = (2, 8)
-	
-	init(using common: Common) {}
-	
-	func transform(_ frames: [SampleFrame]) -> [SampleFrame] {
-		let factor = Int.randomValue(in: factorRange)
-		return frames
-			.lazy
-			.enumerated()
-			.filter { $0.offset % factor == 0 }
-			.map { $0.element }
+	func transform(modifying main: inout MainTransform, maximumLength: Int) {
+		let factor = Int.randomValue(in: (2, 8))
+		for _ in 1...maximumLength / factor {
+			main.write(main.read())
+			main.skip(factor - 1)
+		}
 	}
 }

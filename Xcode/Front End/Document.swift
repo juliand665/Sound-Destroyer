@@ -4,7 +4,6 @@ import Cocoa
 
 class Document: NSDocument {
 	var mainChunk: Main!
-	var mainTransform: MainTransform!
 	var old: Data!
 	var sampleFrames: [SampleFrame]!
 	
@@ -19,11 +18,16 @@ class Document: NSDocument {
 	}
 	
 	func transmogrify() {
-		sampleFrames = mainTransform.transform(sampleFrames)
+		var mainTransform = MainTransform(transforming: sampleFrames, accordingTo: mainChunk.common)
+		sampleFrames = mainTransform.transform()
 		updateChangeCount(.changeDone) // TODO do i need to update this back when saving?
 	}
 	
 	func revert() {
+		guard let old = old else {
+			Swift.print("No data to revert to!")
+			return
+		}
 		read(from: old)
 		updateChangeCount(.changeCleared)
 	}
@@ -32,7 +36,6 @@ class Document: NSDocument {
 		let decoder = AIFFDecoder(for: data)
 		mainChunk = decoder.decode()
 		sampleFrames = mainChunk.decodeSoundData()
-		mainTransform = MainTransform(using: mainChunk.common)
 	}
 	
 	func data() -> Data {
@@ -49,17 +52,5 @@ class Document: NSDocument {
 	
 	override func data(ofType typeName: String) throws -> Data {
 		return data()
-	}
-}
-
-extension Int {
-	/// upper bound is excluded
-	static func randomValue(lessThan upper: Int) -> Int {
-		return Int(arc4random_uniform(UInt32(upper)))
-	}
-	
-	/// upper bound is excluded
-	static func randomValue(in range: (lower: Int, upper: Int)) -> Int {
-		return range.lower + randomValue(lessThan: range.upper - range.lower)
 	}
 }
